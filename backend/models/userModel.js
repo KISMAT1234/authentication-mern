@@ -17,6 +17,10 @@ const userSchema = new Schema({
 
 userSchema.statics.signup = async function(email, password) {
 
+  if(!email || !password) {
+    throw Error('All fields must be provided')
+  }
+
     const exists = await this.findOne({ email })
   
     if (exists) {
